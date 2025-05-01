@@ -15,10 +15,13 @@ const addItem = () => {
 }
 
 const removeItem = (item) => {
- items.value = items.value.filter(i => i.id !== item.id)
+  items.value = items.value.filter(i => i.id !== item.id)
 }
 
-
+const toggleDone = (item) => {
+  item.done == !item.done
+  console.log(item.done)
+}
 </script>
 
 <template>
@@ -28,6 +31,7 @@ const removeItem = (item) => {
 
   <ul>
     <li v-for="item in items" :key="item.text">
+      <input type="checkbox" v-model="item.done" @change="toggleDone(item)" :checked="item.done">
       {{ item.text }}
       <button @click="removeItem(item)">Remove</button>
     </li>
